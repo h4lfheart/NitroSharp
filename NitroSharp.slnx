@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NitroSharp.Core/NitroSharp.Core.csproj" />
+  <Project Path="NitroSharp.Example/NitroSharp.Example.csproj" />
+</Solution>
