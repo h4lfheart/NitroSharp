@@ -1,7 +1,7 @@
 using System.Collections;
 using NitroSharp.Core.Data.Archive;
 
-namespace NitroSharp.Core.Objects.Rom.Data;
+namespace NitroSharp.Core.Objects.Rom;
 
 public sealed class NitroDataTable<T> : IReadOnlyList<T> where T : unmanaged
 {
@@ -9,11 +9,11 @@ public sealed class NitroDataTable<T> : IReadOnlyList<T> where T : unmanaged
 
     private readonly T[] _entries;
 
-    public unsafe NitroDataTable(DataArchive ar, NitroTableInfo table)
+    public unsafe NitroDataTable(DataArchive Ar, NitroTableInfo table)
     {
         var count = (int)(table.Size / (uint)sizeof(T));
-        ar.Position = table.Offset;
-        _entries = ar.ReadArray<T>(count);
+        Ar.Position = table.Offset;
+        _entries = Ar.ReadArray<T>(count);
         Count = count;
     }
 

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using NitroSharp.Core.Data.Archive;
 
-namespace NitroSharp.Core.Objects.Rom.Data;
+namespace NitroSharp.Core.Objects.Rom;
 
 public sealed class NitroNameTable
 {

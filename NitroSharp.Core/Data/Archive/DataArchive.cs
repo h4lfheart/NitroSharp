@@ -1,6 +1,7 @@
 using System.Buffers;
 using System.Runtime.InteropServices;
 using System.Text;
+using NitroSharp.Core.Objects;
 
 namespace NitroSharp.Core.Data.Archive;
 

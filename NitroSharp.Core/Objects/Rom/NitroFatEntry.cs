@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace NitroSharp.Core.Objects.Rom.Data;
+namespace NitroSharp.Core.Objects.Rom;
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public readonly struct NitroFatEntry

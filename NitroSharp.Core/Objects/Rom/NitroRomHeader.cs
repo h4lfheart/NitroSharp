@@ -123,9 +123,11 @@ public readonly struct NitroTableInfo
     public uint Offset { get; }
     public uint Size { get; }
 
-    public NitroTableInfo(DataArchive Ar)
+    public NitroTableInfo(uint offset, uint size)
     {
-        Offset = Ar.Read<uint>();
-        Size = Ar.Read<uint>();
+        Offset = offset;
+        Size = size;
     }
+
+    public NitroTableInfo(DataArchive Ar) : this(Ar.Read<uint>(), Ar.Read<uint>()) { }
 }

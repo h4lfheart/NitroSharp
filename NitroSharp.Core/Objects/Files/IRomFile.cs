@@ -1,6 +1,7 @@
+using NitroSharp.Core.Data;
 using NitroSharp.Core.Data.Archive;
 
-namespace NitroSharp.Core.Objects.Rom;
+namespace NitroSharp.Core.Objects.Files;
 
 public interface IRomFile
 {
@@ -10,6 +11,7 @@ public interface IRomFile
     uint Size { get; }
     ushort Id { get; }
 
-    byte[] Read();
-    DataArchive CreateArchive();
+    DataArchive Open();
+
+    T Load<T>() where T : INitroDeserializable<T>;
 }
