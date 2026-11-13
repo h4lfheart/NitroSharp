@@ -6,7 +6,7 @@ namespace NitroSharp.Conversion.Screens;
 
 public static class ScreenImageConverter
 {
-    public static CImage ToScreenImage(this CScreen screen, CIndexedImage graphic, CPalette palette)
+    public static CImage ToImage(this CScreen screen, CIndexedImage graphic, CPalette palette)
     {
         var screenTilesX = screen.Width / 8;
         var canvasTilesX = graphic.Width / 8;
