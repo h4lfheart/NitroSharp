@@ -14,7 +14,7 @@ public static class ImageDecoder
         {
             NitroColorDepth.Bpp4 => DecodeIndices4Bpp(graphicData.TileData),
             NitroColorDepth.Bpp8 => graphicData.TileData,
-            _ => throw new NotSupportedException($"Unsupported character color depth {graphicData.ColorDepth}."),
+            _ => throw new NotSupportedException($"Unsupported color depth {graphicData.ColorDepth}."),
         };
 
         var tileWidth = graphicData.TileWidth;
@@ -31,14 +31,14 @@ public static class ImageDecoder
         if ((graphicData.Flags & 1) == 0)
             indices = Unswizzle(indices, width);
 
-        return new CIndexedImage(width, height, indices);
+        return new CIndexedImage(width, height, indices, graphicData.ColorDepth);
     }
 
     private static byte[] DecodeIndices4Bpp(byte[] data)
     {
         var indices = new byte[data.Length * 2];
         for (var i = 0; i < indices.Length; i++)
-            indices[i] = (byte)((data[i / 2] >> ((i % 2) * 4)) & 0xF);
+            indices[i] = (byte)((data[i / 2] >> ((i % 2) * 4)) & 0b1111);
 
         return indices;
     }
