@@ -8,8 +8,8 @@ namespace NitroSharp.Core.Objects.Exports.Archive;
 
 public sealed class NitroNARC : NitroObject, INitroDeserializable<NitroNARC>, IFileProvider
 {
-
     public IReadOnlyDictionary<string, IRomFile> Files => _files;
+    public IReadOnlyDictionary<ushort, IRomFile> FilesById => _filesById;
 
     private readonly NitroAllocationBlock _fat;
     private readonly NitroNameBlock _fnt;

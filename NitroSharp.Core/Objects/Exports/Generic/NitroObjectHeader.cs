@@ -23,8 +23,8 @@ public sealed class NitroObjectHeader
         if (!string.Equals(Magic, expectedMagic, StringComparison.Ordinal))
             throw new ArchiveException(Ar, $"Expected Nitro Magic '{expectedMagic}', got '{Magic}'.");
 
-        BOM = (NitroByteOrder)Ar.Read<ushort>();
-        if (BOM != NitroByteOrder.LittleEndian)
+        BOM = Ar.ReadEnum<NitroByteOrder>();
+        if (BOM is not (NitroByteOrder.LittleEndian or NitroByteOrder.BigEndian))
             throw new ArchiveException(Ar, $"Invalid Byte Order Marker 0x{(ushort)BOM:X4}.");
 
         var version = Ar.Read<ushort>();

@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using NitroSharp.Core.Objects;
@@ -78,6 +79,13 @@ public abstract class DataArchive : IDisposable
         {
             ArrayPool<byte>.Shared.Return(rented);
         }
+    }
+
+    public T ReadEnum<T>() where T : struct, Enum
+    {
+        Span<byte> buffer = stackalloc byte[Unsafe.SizeOf<T>()];
+        Read(buffer);
+        return Unsafe.As<byte, T>(ref MemoryMarshal.GetReference(buffer));
     }
 
     public virtual T Peek<T>() where T : unmanaged
