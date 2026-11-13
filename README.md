@@ -16,23 +16,19 @@ A Nintendo DS (.nds) parsing and extraction library for .NET
 Add `NitroSharp.Core` and `NitroSharp.Conversion` to your project, then:
 
 ```cs
-using NitroSharp.Core.Objects.Exports.Archive;
-using NitroSharp.Core.Objects.Exports.Graphics;
-using NitroSharp.Core.Objects.Exports.Palettes;
-using NitroSharp.Core.Objects.Exports.Screens;
-using NitroSharp.Core.Providers;
-
+// Create the file interface to read game files
 var provider = new NitroFileProvider("game.nds");
 provider.Initialize();
 
-// load an archive file
+// Load an archive file to browse the inner assets
 var narc = provider.LoadObject<NitroNARC>("a/0/4/0")!;
 
-// load the relevant objects and decode
+// Load the relevant objects and decode them to their conversion classes
 var screen = narc.LoadObject<NitroNSCR>(32).Decode();
 var graphic = narc.LoadObject<NitroNCGR>(19).Decode();
 var palette = narc.LoadObject<NitroNCLR>(4).Decode();
 
+// Create the final image from the screen indices, graphic data, and palette
 var image = screen.ToImage(graphic, palette);
 ```
 
